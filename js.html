@@ -1,0 +1,285 @@
+<html>
+<head>
+<script type="text/javascript">
+var a;
+function abc()
+{
+	a=5;
+	document.getElementById("aid").innerHTML=a;
+}
+function xyz()
+{
+	var b;
+	b=6;
+	if (a=="undefined")
+	{
+		document.getElementById("xid").innerHTML="b="+b;
+	}
+	else
+	{
+		document.getElementById("xid").innerHTML="a="+a+" b="+b;
+	}
+
+}
+function alertfun()
+{
+	alert('t');
+}
+function promptfun()
+{
+	
+	if (prompt('t')=="gurpreet")
+	{
+	alert('ok');
+	}
+	else
+	{
+		alert('not ok');
+	}
+
+}
+function confirmfun()
+{
+	if(confirm('t')==true)
+	{
+	alert('ok');
+	}
+	else
+	{
+		alert('cancel');
+	}
+}
+function Blanktext()
+{
+	txt.value="";
+}
+function ShadowText()
+{
+	txt.value="eg. email@gmail.com";
+}
+function validatetext()
+{
+	txt.value="";
+}
+function brinfo()
+{
+	var txt;
+	txt = "<p>Browser CodeName: " + navigator.appCodeName + "</p>";
+	txt+= "<p>Browser Name: " + navigator.appName + "</p>";
+	txt+= "<p>Browser Version: " + navigator.appVersion + "</p>";
+	txt+= "<p>Cookies Enabled: " + navigator.cookieEnabled + "</p>";
+	txt+= "<p>Platform: " + navigator.platform + "</p>";
+	txt+= "<p>User-agent header: " + navigator.userAgent + "</p>";
+	if(txt != undefined){
+		document.getElementById('Bid').innerHTML = '<img src="images/loading.gif" />';
+		setTimeout(function(){
+			document.getElementById("Bid").innerHTML = txt;
+		},5000);
+	}
+}
+function Mesg()
+{
+	try
+	{
+		alerrt('adfadsf');
+	}
+	catch(err)
+	{
+		alert(err.message);
+	}
+}
+var t;
+var regEmail = /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@(([0-9a-zA-Z])+([-\w]*[0-9a-zA-Z])*\.)+[a-zA-Z]{2,9})$/;
+var regPhone = /^\d{3}([\- ]?)\d{3}([\- ]?)\d{4}$/;
+function CheckValue(){
+	var objFrm = document.getElementById('frmSignup').elements;
+	for(var i=0;i<objFrm.length;i++){
+		var cls = objFrm[i].className;
+		if(cls.indexOf('blank') >= 0){
+			if(objFrm[i].value == ''){
+				document.getElementById('error').innerHTML = GetMessage(objFrm[i].name);
+				objFrm[i].focus();
+				return false;
+			}
+		}
+		if(cls.indexOf('match') >= 0){
+			if(objFrm[i].value != objFrm[i-1].value){
+				document.getElementById('error').innerHTML = GetMessage(objFrm[i].name + '1');
+				objFrm[i].focus();
+				return false;
+			}
+		}
+		if(cls.indexOf('email') >= 0){
+			if(!regEmail.test(objFrm[i].value)){
+				document.getElementById('error').innerHTML = GetMessage(objFrm[i].name + '1');
+				objFrm[i].focus();
+				return false;
+			}
+		}
+		if(cls.indexOf('phone') >= 0){
+			if(!regPhone.test(objFrm[i].value)){
+				document.getElementById('error').innerHTML = GetMessage(objFrm[i].name + '1');
+				objFrm[i].focus();
+				return false;
+			}
+		}
+	}
+	document.getElementById('error').style.color = 'green';
+	document.getElementById('error').innerHTML = 'All fields are correct.';
+	t = setTimeout(function(){
+		document.getElementById('frmSignup').submit();
+	},2000);
+	setTimeout(function(){
+		//clearTimeout(t);
+	},1000);
+	return false;
+}
+
+function GetMessage(str){
+	switch(str){
+		case 'fname':
+			return 'Firstname is required';
+		break;
+		case 'lname':
+			return 'Lastname is required';
+		break;
+		case 'phone':
+			return 'Phone is required';
+		break;
+		case 'phone1':
+			return 'Please enter valid phone number';
+		break;
+		case 'email':
+			return 'Email is required';
+		break;
+		case 'email1':
+			return 'Please enter valid email addresss';
+		break;
+		case 'password':
+			return 'Password is required';
+		break;
+		case 'cpassword':
+			return 'Confirm password is required';
+		break;
+		case 'cpassword1':
+			return 'Confirm password does not match';
+		break;
+	}
+}
+var mili=0;	
+var sec=0;
+var min=0;
+var hr=0;
+
+var t;
+var count=1;
+function startTimer(){
+	t = setTimeout(function(){
+		mili++;
+		setValue();
+		if(mili == 60){
+			mili=0;
+			sec++;
+		}
+		if(sec == 60){
+			sec=0;
+			min++;
+		}
+		if(min == 60){
+			min=0;
+			hr++;
+		}
+		startTimer();
+	},15);
+}
+function stopTimer(){
+	clearTimeout(t);
+}
+function resetTimer(){
+	mili=0;	
+	sec=0;
+	min=0;
+	hr=0;
+	setValue();
+	count=1;
+	document.getElementById('dvLap').innerHTML = '';
+}
+
+function setValue(){
+	document.getElementById('txtHour').value = hr;
+	document.getElementById('txtMin').value = min;
+	document.getElementById('txtSec').value = sec;
+	document.getElementById('txtMilli').value = mili;
+}
+function lapTimer(){
+	var str = (count++) + '   -   ' + hr + ':' + min + ':' + sec + ':' + mili + '<br/>';
+	document.getElementById('dvLap').innerHTML += str;
+}
+
+</script>
+</head>
+<body>
+<p id="aid"></p>
+<p id="xid"></p>
+<input type="button" value="button 1" onclick="promptfun()" onMouseOver="document.getElementById('aid').innerHTML='Mouse Event On Button 1'");"/>
+<input type="button" value="button 2" onclick="Mesg()" onMouseOver="document.getElementById('aid').innerHTML='Mouse Event On Button 2'");"/>
+<input type="button" value="Browser Function" onclick="brinfo()"/>
+<input type="text" id="txt" value="eg. email@gmail.com" onFocus="Blanktext()" onBlur="ShadowText()" onChange="alert(txt.value);"/>
+<div id="Bid"></div>
+<fieldset>
+	<legend>SignUp Form</legend>
+	<div id='error' style='color:red;'></div>
+	<form id='frmSignup' method='post' action='http://localhost/testJs/jq.html' onsubmit="return CheckValue()">
+		<div class='field'>
+			<label for='fname'>FirstName</label>
+			<input type='text' id='fname' name='fname' class='blank'/>
+		</div>
+		<div class='field'>
+			<label for='lname'>LastName</label>
+			<input type='text' id='lname' name='lname' class='blank'/>
+		</div>
+		<div class='field'>
+			<label for='phone'>Phone</label>
+			<input type='text' id='phone' name='phone' class='blank phone'/>
+		</div>
+		<div class='field'>
+			<label for='email'>Email</label>
+			<input type='text' id='email' name='email' class='blank email'/>
+		</div>
+		<div class='field'>
+			<label for='password'>Password</label>
+			<input type='password' id='password' name='password' class='blank'/>
+		</div>
+		<div class='field'>
+			<label for='cpassword'>Confirm-Password</label>
+			<input type='password' id='cpassword' name='cpassword' class='blank match'/>
+		</div>
+		<div class='field'>
+			<input type='submit' id='btnSubmit' value='Submit'/>
+		</div>
+	</form>
+</fieldset>
+<fieldset>
+	<legend>Speed Clock</legend>
+	<div>
+		<input type='text' id='txtHour' style='width:40px;' />
+		<input type='text' id='txtMin' style='width:40px;' />
+		<input type='text' id='txtSec' style='width:40px;' />
+		<input type='text' id='txtMilli' style='width:40px;' />
+		<br/>
+		<br/>
+		<input type='button' id='btnStart' value='Start' onclick='startTimer()' />
+		<input type='button' id='btnStop' value='Stop' onclick='stopTimer()' />
+		<input type='button' id='btnReset' value='Reset' onclick='resetTimer()' />
+		<input type='button' id='btnLap' value='Lap' onclick='lapTimer()' />
+		<br/>
+		<br/>
+		<div id='dvLap'>
+			
+		</div>
+	</div>
+</fieldset>
+<br/>
+
+</body>
+</html>

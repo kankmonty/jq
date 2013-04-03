@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>JQuery</title>
+<script type="text/javascript"  src="jquery-1.7.2.js"></script>
+<script type="text/javascript">
+function classReplace()
+{
+	$(".comclass").text("<p>replace by class</p>");
+}
+function nameReplace()
+{
+	$(" p:lt(2)").html("replace by name");
+}
+function pReplace()
+{
+	$("p").html("replace by tag");
+}
+function idReplace()
+{
+	$("#div1").html("replace by id");
+}
+
+</script>
+</head>
+<body>
+<div id="div1" name="mydiv11" class="comclass">
+<p class="a">Try it yourself examples in each chapter</p>
+</div>
+<div id="div2" name="mydiv" class="comclass">
+<p class="b">Jquery Examples</p>
+</div>
+<div id="div3" name="mydiv" class="difclass">
+<p class="a">Jquery Reference</p>
+</div>
+<input type="text" name="mydiv" /><br />
+<input type="button" name="mydiv" onclick="classReplace()" value="Replace class"/>
+<input type="button" name="mydiv" onclick="nameReplace()" value="Replace name"/>
+<input type="button" name="mydiv" onclick="pReplace()" value="Replace p"/>
+<input type="button" name="mydiv" onclick="idReplace()" value="Replace ID"/>
+
+</body>
+</html>
